@@ -1,0 +1,151 @@
+{#
+ # Homepage template
+ # -----------------
+ #
+ # This template gets loaded whenever the site's homepage is requested, because
+ # the "Homepage" single-entry section's Template setting is set to "index".
+ #
+ # An `entry` variable will be automatically passed to this template, which will
+ # be set to the Homepage entry.
+-#}
+
+{% extends "_layouts/site" %}
+
+{% block main %}
+<div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
+    <ul class="uk-slideshow uk-overlay-active" style="margin:0;height:400px!important">
+        {% for image in entry.heroImage %}
+        <li>
+            <img src="{{ image.getUrl({ height: 400 }) }}" alt="{{ image.title }}"/>
+            <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade uk-flex uk-flex-center uk-flex-middle uk-text-center">
+                <div>
+                    <h3>{{ image.title }}</h3>
+                    <div class="hero-shortdesc">{{ image.shortDescription }}</div>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
+    <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
+</div>
+
+    <!--
+	
+    <div id="hero">
+		{% set image = entry.heroImage.first() %}
+		{% if image %}
+			<img src="{{ image.getUrl({ height: 916 }) }}" alt="{{ image.title }}"/>
+		{% endif %}
+
+		<div class="hero-info">
+			<h1>We always see the glass<br>
+				<span class="ir">Half Full</span>
+			</h1>
+			<p class="center reverse">Work with Happy Lager and you will find an endless<br>
+				tap of ideas, wit and creativity.
+			</p>
+			<p class="center"><a href="mailto:hi@happylager.dev" class="hero-cta">Pull up a bar stool</a></p>
+		</div>
+	</div>
+
+    -->
+
+	<section id="on-tap">
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex12">
+				<div class="on-tap-buttons-wrap">
+					<a class="button-w-icon icon-news" href="{{ url('gallery') }}">Case Studies</a>
+					<a href="{{ url('gallery') }}" class="view-more">View More</a>
+				</div>
+			</div>
+		</div>
+		<div class="flex">
+
+			{# Pull in the three latest Gallery entries #}
+			{% for galleryEntry in craft.entries.section('gallery') %}
+				<div class="g1-flex4 g2-flex2 g3-flex4">
+					<a href="{{ galleryEntry.url }}" class="services-entry-wrap">
+                        {% set galleryImg = galleryEntry.featuredImage.first() %}
+						{% if galleryImg %}
+							<img src="{{ galleryImg.url({ width: 440, height: 328 }) }}" alt="{{ galleryImg.title }}">
+						{% endif %}
+						<h3 class="center">{{ galleryEntry.title }}</h3>
+						{{ galleryEntry.shortDescription }}
+					</a>
+				</div>
+			{% endfor %}
+
+		</div>
+	</section>
+
+	<section id="how-made" class="cta">
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+					<hr class="horz-rule alt">
+					<div class="button-w-icon alt icon-beaker">{{ cta.ctaHeading }}</div>
+			</div>
+		</div>
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+				<h2 class="beta">{{ cta.ctaDescription }}</h2>
+				<h4 class="subfont delta center">{{ cta.ctaSubDescription }}</h4>
+			</div>
+		</div>
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+				<hr class="horz-rule alt2">
+				<a class="big-arrow" href="{{ cta.linkUrl }}">Go</a>
+			</div>
+		</div>
+	</section>
+
+    <!--
+
+	<section id="testimonials">
+		<div class="flex">
+			{% for block in entry.testimonials %}
+				<div class="g1-flex4 g2-flex2 g3-flex4 bubble">
+					<blockquote>{{ block.quote }}</blockquote>
+					{% set photo = block.photo.first() %}
+					{% if photo %}
+						<img class="" src="{{ photo.url({ width: 84, height: 84 }) }}" alt="{{ photo.title }}">
+					{% endif %}
+					<p><cite class="gamma reverse">{{ block.cite }}</cite></p>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+
+    -->
+
+    <!--
+
+	<section id="best-buddies">
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+				<hr class="horz-rule alt3">
+				<a class="button-w-icon alt2 icon-beercan">Our best Drinking Buddies</a>
+				<ul class="logos">
+					{% for logo in entry.clientLogos %}
+						<li>
+							<img src="{{ logo.getUrl() }}" alt="logo.title"/>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+				<h1 class="beta center">Some Partners Make it all worth while</h1>
+				<h2 class="subfont delta center">Robin Richards &middot; President, Happy Lager</h2>
+			</div>
+		</div>
+	</section>
+
+    -->
+
+{% endblock %}
+{% block scripts %}
+<script src="{{ siteUrl }}assets/js/uikit-components/slideshow.min.js"></script>
+{% endblock %}

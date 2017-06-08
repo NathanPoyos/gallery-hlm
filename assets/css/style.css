@@ -1,0 +1,43 @@
+/* Custom CSS */
+
+.hero-shortdesc {
+    max-width: 600px;
+}
+
+#on-tap {
+    margin-top: 0 !important;
+}
+
+#header nav li a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#header h1 {
+    top: 6px;
+}
+
+.services-entry-wrap p {
+    font-size: 14px;
+}
+
+#footer .flex a.contact {
+    max-width: 190px;
+}
+
+.button-w-icon:before {
+    top: 10px;
+}
+
+.cta h2 {
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+/* Media Queries */
+
+@media (max-width: 350px) {
+    #header h1 {
+        left: 0;
+    }
+}

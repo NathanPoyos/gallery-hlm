@@ -1,0 +1,61 @@
+{% extends "_layouts/site" %}
+{% set bodyClass = "work" %}
+{% set title = entry.title %}
+
+{% block main %}
+
+    <article>
+		{% include "_includes/content_header" with { showFeaturedImage: true } %}
+	</article>
+
+    <section id="on-tap">
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex12">
+				<div class="on-tap-buttons-wrap">
+					<a class="button-w-icon icon-news" href="{{ url('gallery') }}">Case Studies</a>
+					<a href="{{ url('gallery') }}" class="view-more">View More</a>
+				</div>
+			</div>
+		</div>
+		<div class="flex">
+
+			{# Pull in the three latest Gallery entries #}
+			{% for galleryEntry in craft.entries.section('gallery') %}
+				<div class="g1-flex4 g2-flex2 g3-flex4">
+					<a href="{{ galleryEntry.url }}" class="services-entry-wrap">
+                        {% set galleryImg = galleryEntry.featuredImage.first() %}
+						{% if galleryImg %}
+							<img src="{{ galleryImg.url({ width: 440, height: 328 }) }}" alt="{{ galleryImg.title }}">
+						{% endif %}
+						<h3 class="center">{{ galleryEntry.title }}</h3>
+						{{ galleryEntry.shortDescription }}
+					</a>
+				</div>
+			{% endfor %}
+
+		</div>
+	</section>
+
+
+	<section id="how-made" class="cta">
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+					<hr class="horz-rule alt">
+					<div class="button-w-icon alt icon-beaker">{{ cta.ctaHeading }}</div>
+			</div>
+		</div>
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+				<h2 class="beta">{{ cta.ctaDescription }}</h2>
+				<h4 class="subfont delta center">{{ cta.ctaSubDescription }}</h4>
+			</div>
+		</div>
+		<div class="flex">
+			<div class="g1-flex4 g2-flex6 g3-flex10 g3-offset1">
+				<hr class="horz-rule alt2">
+				<a class="big-arrow" href="{{ cta.linkUrl }}">Go</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
