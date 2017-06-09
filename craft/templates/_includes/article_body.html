@@ -91,13 +91,13 @@
 					{% do image.setTransform({ width: 360 }) %}
 				{% endif %}
 
-				<p><img{% if position == 'full' %} class="contain-media"{% endif %} src="{{ image.url }}" alt="{{ image.title }}"></p>
+				<p><img{% if position == 'full' %} class="contain-media"{% endif %} src="{{ siteUrl }}{{ image.url }}" alt="{{ image.title }}"></p>
 			{% endif %}
 
 		{% case 'gallery' %}
 			{% for image in block.images %}
 				<div class="g1-flex4 g2-flex2 g3-flex4">
-					<img src="{{ image.getUrl('small') }}" alt="{{ image.title }}">
+					<img src="{{ siteUrl }}{{ image.getUrl('small') }}" alt="{{ image.title }}">
 					{{ image.shortDescription }}
 				</div>
 			{% endfor %}

@@ -38,6 +38,18 @@ body.gallery #main header {
     background: #c6c5c5 url("../images/headingbg-gray.svg");
 }
 
+/* Start UIKIT overides */
+
+.uk-slideshow {
+    margin-top: 0 !important;
+}
+
+.uk-margin-vlarge-bottom {
+    margin-bottom: 70px !important;
+}
+
+/* End UIKIT overides */
+
 /* Media Queries */
 
 @media (max-width: 350px) {
