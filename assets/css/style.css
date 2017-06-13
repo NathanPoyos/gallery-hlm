@@ -17,12 +17,69 @@
     top: 6px;
 }
 
+.flex {
+    max-width: 1200px !important;
+}
+
+.homepage .flex, #header .flex {
+    max-width: 62.5rem !important;
+}
+
+.flex .g3-offset1 {
+    margin-left: 0;
+}
+
+.flex .g3-flex10 {
+    width: 100%;
+}
+
 .services-entry-wrap p {
     font-size: 14px;
 }
 
+#footer {
+    background: #222;
+}
+
 #footer .flex a.contact {
     max-width: 190px;
+}
+
+#footer .flex {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
+#bar #search input:hover, #bar #search input:focus {
+    border-color: #bbb;
+}
+
+#bar #search input {
+    transition: all ease .3s;
+    border-radius: 10px;
+    padding-left: 8px;
+    outline: 0 !important;
+}
+
+#bar {
+    height: 35px;
+    background: #333;
+}
+
+#bar #search form.search-form {
+    line-height: 25px !important;
+}
+
+#bar #social a {
+    line-height: 35px !important;
+}
+
+#bar .flex {
+    max-width: 900px;
+}
+
+#on-tap {
+    background: rgba(4, 4, 4, 0.8);
 }
 
 .button-w-icon:before {
@@ -38,7 +95,16 @@ body.gallery #main header {
     background: #c6c5c5 url("../images/headingbg-gray.svg");
 }
 
+#ul-gridlist {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 /* Start UIKIT overides */
+
+.uk-grid {
+    margin-left: -25px !important;
+}
 
 .uk-slideshow {
     margin-top: 0 !important;
@@ -48,9 +114,32 @@ body.gallery #main header {
     margin-bottom: 70px !important;
 }
 
+.uk-slidenav-position .uk-slidenav {
+    display: inline-block !important;
+}
+
 /* End UIKIT overides */
 
 /* Media Queries */
+
+@media (min-width: 1220px) {
+    .uk-grid {
+        margin-left: -35px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .uk-slideshow>li, ul.uk-slideshow.uk-overlay-active {
+        height: 300px !important;
+    }
+    #ul-gridlist {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .flex div {
+        text-align: center;
+    }
+}
 
 @media (max-width: 350px) {
     #header h1 {

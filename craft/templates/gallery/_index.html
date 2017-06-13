@@ -25,7 +25,9 @@
 					<a href="{{ galleryEntry.url }}" class="services-entry-wrap">
                         {% set galleryImg = galleryEntry.featuredImage.first() %}
 						{% if galleryImg %}
-							<img src="{{ galleryImg.url({ width: 440, height: 328 }) }}" alt="{{ galleryImg.title }}">
+                            <figure class="uk-overlay uk-overlay-hover">
+							     <img class="uk-overlay-spin" src="{{ galleryImg.url({ width: 440, height: 328 }) }}" alt="{{ galleryImg.title }}">
+                            </figure>
 						{% endif %}
 						<h3 class="center">{{ galleryEntry.title }}</h3>
 						{{ galleryEntry.shortDescription }}

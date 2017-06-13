@@ -5,37 +5,55 @@
 {% block main %}
 
     <div data-uk-slideshow>
-        <ul class="uk-slideshow">
-            
-            {% for image in entry.gallerySlider %}
-      
-            <li>
-                <img src="{{ siteUrl }}{{ image.getUrl({ height: 400 }) }}" alt="{{ image.title }}">
-            </li>
-            
-            {% else %}
 
-            <li>
-                <img src="http://unsplash.it/600/400" alt="No Slider Image">
-            </li>
+        <div class="uk-slidenav-position">
+            <ul class="uk-slideshow uk-overlay-active">
+
+                {% for image in entry.gallerySlider %}
+                
+                <li>
+                    <img class="uk-overlay-scale" src="{{ siteUrl }}{{ image.getUrl('sliderBanner') }}" alt="{{ image.title }}">
+                    <div class="uk-overlay-panel uk-overlay-bottom uk-overlay-background uk-overlay-slide-bottom">
+                        {% if image.shortDescription %}
+                        <h3 class="uk-text-left uk-margin-bottom">{{ image.title }}</h3>
+                        {{ image.shortDescription }}
+                        {% else %}
+                        <h3 class="uk-text-left uk-margin-bottom-remove">{{ image.title }}</h3>
+                        {% endif %}
+                    </div>
+                </li>
+
+                {% else %}
+
+                <li>
+                    <img class="uk-overlay-scale" src="{{ siteUrl }}assets/site/slider/blank_slider.jpg" width="1920" height="500" alt="Blank Dummy Slider">
+                </li>
+
+                {% endfor %}   
+
+            </ul>
+            <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+            <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+        </div>
             
-            {% endfor %}    
-            
-        </ul>
-        <ul class="uk-grid uk-grid-width-1-6">
+        <ul id="ul-gridlist" class="uk-grid uk-grid-width-1-2 uk-grid-width-xlarge-1-6 uk-grid-width-large-1-6 uk-grid-width-medium-1-3 uk-grid-width-small-1-2">
             
             {% set i = 0 %}
             {% for image in entry.gallerySlider %}
             <li>
                 <a data-uk-slideshow-item="{{ i }}">
-                <img src="{{ siteUrl }}{{ image.getUrl({ width: 500, height: 300 }) }}" alt="{{ image.title }}">
+                    <figure class="uk-overlay uk-overlay-hover">
+                        <img class="uk-overlay-scale" src="{{ siteUrl }}{{ image.getUrl({ width: 500, height: 300 }) }}" alt="{{ image.title }}">
+                    </figure>
                 </a>
             </li>
             {% set i = i + 1  %}
             {% else %}
             <li>
                 <a data-uk-slideshow-item="0">
-                <img src="http://unsplash.it/600/400" alt="No Slider Thumb">
+                    <figure class="uk-overlay uk-overlay-hover">
+                        <img class="uk-overlay-scale" src="{{ siteUrl }}assets/site/slider/blank_slider.jpg" width="500" height="300" alt="No Slider Thumb">
+                    </figure>
                 </a>
             </li>
             {% endfor %}
@@ -76,7 +94,7 @@
 				<nav class="prev-next-entry">
 					{% set params = {
 						section: 'gallery',
-						order: 'title'
+						order: 'postDate'
 					} %}
 
 					{% set prevEntry = entry.getPrev(params) %}

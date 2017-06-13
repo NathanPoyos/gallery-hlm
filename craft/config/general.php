@@ -8,6 +8,7 @@
  */
 
 return array(
+    'useWriteFileLock' => 'auto',
 	'*' => array(
 		'devMode' => true,
 		'environmentVariables' => array(
